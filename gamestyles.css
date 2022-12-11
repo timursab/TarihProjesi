@@ -1,0 +1,56 @@
+html,body{
+    margin: 0;
+    padding: 0;
+
+    
+
+    height: 100%;
+    background-color: #f6f6ef;
+    
+}
+body{
+    background-color: red;
+}
+
+#test{
+    position: absolute;
+    background-color: red;
+}
+.cards{
+    color: transparent;
+    flex: 0 0 auto;
+    cursor: pointer;
+    user-select: none;
+    margin: 10px;
+    background:  linear-gradient(33deg,#e6e7e9 25%,#d8dbdd 10%,#d8dbdd 50%,#e6e7e9 50%,#e6e7e9 75%,#d8dbdd 50%,#d8dbdd 100%);
+    font-size: xx-large;
+    width: 14%;
+    height: 15%;
+    border-radius: 40px;
+    border-style: solid;
+    border-color: #868E96;
+    transition: transform 1s linear;
+    transform: perspective(32cm)rotateY(-180deg)rotateX(0deg);
+}
+
+#container{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: green;
+    width: 90%;
+    height: 90%;
+    align-content: space-around;
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+div {
+    background-color: #f1f1f1;
+    text-align: center;
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+}
