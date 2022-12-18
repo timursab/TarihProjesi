@@ -131,17 +131,17 @@ function hideTextC(ci){
     ci.style.color = "transparent"
 }
 function setBlue(i){
-    allCs[i].style.background = "linear-gradient(33deg,#00E7FF 25%,#00FFF6 10%,#00FFF6 50%,#00E7FF 50%,#00E7FF 75%,#00FFF6 50%,#00FFF6 100%)"
+    allCs[i].style.background = "linear-gradient(33deg,#0d5394 25%,#1464b1 10%,#1464b1 50%,#0d5394 50%,#0d5394 75%,#1464b1 50%,#1464b1 100%)"
 }
 function setRed(i){
     allCs[i].style.background = "linear-gradient(33deg,#ff131c 25%,#d91118 10%,#d91118 50%,#ff131c 50%,#ff131c 75%,#d91118 50%,#d91118 100%)"
 }
 function changeTurnBackground(turn){
     if(turn){
-        document.body.style.backgroundColor = "blue"
+        document.body.style.backgroundColor = "#0e5ee4"
     }
     else{
-        document.body.style.backgroundColor = "red"
+        document.body.style.backgroundColor = "#f41733"
         
     }
     isInTransition = false;
