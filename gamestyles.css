@@ -1,16 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@200&display=swap');
 html,body{
+    font-family: 'Chivo Mono', monospace;
     margin: 0;
     padding: 0;
     height: 100%;
     background-color: #f6f6ef;
 }
 body{
-    background-color: red;
-}
-
-#test{
-    position: absolute;
-    background-color: red;
+    background-color: #f41733;
 }
 .cards{
     color: transparent;
@@ -19,7 +16,7 @@ body{
     user-select: none;
     margin: 10px;
     background: linear-gradient(33deg,#e6e7e9 25%,#d8dbdd 10%,#d8dbdd 50%,#e6e7e9 50%,#e6e7e9 75%,#d8dbdd 50%,#d8dbdd 100%);
-    font-size: xx-large;
+    font-size: 27.5px;
     width: 14%;
     height: 15%;
     border-radius: 40px;

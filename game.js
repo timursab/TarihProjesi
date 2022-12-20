@@ -8,6 +8,8 @@ for(iii;iii < allCs.length;iii++){
 
 }
 
+var blueScore = 0;
+var redScore = 0;
 var selectingSecond = false;
 var prevSelected;
 var isInTransition = false;
@@ -26,36 +28,42 @@ q9Solved = false;
 q10Solved = false;
 
 
-c1.textContent = "question1";
-c2.textContent = "answer1";
-c3.textContent = "question2";
-c4.textContent = "answer2";
-c5.textContent = "question3";
-c6.textContent = "answer3";
-c7.textContent = "question4";
-c8.textContent = "answer4";
-c9.textContent = "question5";
-c10.textContent ="answer5";
-c11.textContent = "question6";
-c12.textContent = "answer6";
-c13.textContent = "question7";
-c14.textContent = "answer7";
-c15.textContent = "question8";
-c16.textContent = "answer8";
-c17.textContent = "question9";
-c18.textContent = "answer9";
-c19.textContent = "question10";
-c20.textContent ="answer10";
+c1.textContent = "İlk Kurulan Türk Beyliği";
+c2.textContent = "Saltuklular";
+c3.textContent = "İlk Hastanenin Kurulduğu beylik";
+c4.textContent = "Mengücekliler";
+c5.textContent = "Yağbasan Medresesinin Bulunduğu Beylik";
+c6.textContent = "Danişmentliler";
+c7.textContent = "El Cezerinin Bulunduğu Beylik";
+c8.textContent = "Artuklular";
+c9.textContent = "Donaınımı Güçlü olan bir Beylik";
+c10.textContent ="Çaka Beyliği";
+c11.textContent = "Türkiye Selçuklunun En Parlak Dönemi";
+c12.textContent = "1. Alaaddin Keykubat Dönemi";
+c13.textContent = "Anadolunun Kapılarını Açan Savaş";
+c14.textContent = "Malazgrit Savaşı";
+c15.textContent = "Türkiye selçuklunun Yıkılışını Başlatan Savaş";
+c16.textContent = "Kösedağ Savaşı";
+c17.textContent = "Türklerin Anadoludaki Yerini Sağlamlaştıran Savaş";
+c18.textContent = "Miryekefelon Savaşı";
+c19.textContent = "İlk Dini İsyandır";
+c20.textContent = "Babailer İsyanı";
 
 
 addEventListener("click", (event) =>{
     if(event.target.className == "cards"){
         mainLogic(event.target);
+    }else{
+        checkGameEnd();
     }
 })
 
 
+
+
+
 function mainLogic(c){
+    checkGameEnd();
     if(c==prevSelected){return;}
     if((c == allCs[0]||c == allCs[1]) && q1Solved){return;}
     if((c == allCs[2]||c == allCs[3]) && q2Solved){return;}
@@ -120,7 +128,6 @@ function mainLogic(c){
         prevSelected = c;
     }
 }
-
 function showTextArray(i){
     allCs[i].style.color = "black"
 }
@@ -132,9 +139,11 @@ function hideTextC(ci){
 }
 function setBlue(i){
     allCs[i].style.background = "linear-gradient(33deg,#0d5394 25%,#1464b1 10%,#1464b1 50%,#0d5394 50%,#0d5394 75%,#1464b1 50%,#1464b1 100%)"
+    blueScore++;
 }
 function setRed(i){
     allCs[i].style.background = "linear-gradient(33deg,#ff131c 25%,#d91118 10%,#d91118 50%,#ff131c 50%,#ff131c 75%,#d91118 50%,#d91118 100%)"
+    redScore++;
 }
 function changeTurnBackground(turn){
     if(turn){
@@ -146,3 +155,15 @@ function changeTurnBackground(turn){
     }
     isInTransition = false;
 }
+function checkGameEnd(){    
+    if (blueScore + redScore >= 20) {
+        if (blueScore > redScore) {
+            window.location.assign('results/blueWin.html');
+          } else if (blueScore === redScore) {
+            window.location.assign('results/drawWin.html');
+          } else {
+            window.location.assign('results/redWin.html');
+          }
+    }
+}
+
