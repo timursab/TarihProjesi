@@ -1,19 +1,20 @@
 var allCs = [c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15,c16,c17,c18,c19,c20];
-var body = document.getElementsByClassName("body");
 //Randomize Flex Order
 var iii = 0;
+
 for(iii;iii < allCs.length;iii++){
     allCs[iii].dataset.customVariable ="bar";
     allCs[iii].bar = Math.floor(iii/2);
-    allCs[iii].style.order = Math.round(Math.random()*10)
-
+    allCs[iii].style.order = Math.round(Math.random()*10);
 }
 
+var blueScore = 0;
+var redScore = 0;
 var selectingSecond = false;
 var prevSelected;
 var isInTransition = false;
+var teamTurn = false;
 
-var team1 = false;
 
 q1Solved = false;
 q2Solved = false;
@@ -27,26 +28,26 @@ q9Solved = false;
 q10Solved = false;
 
 
-c1.textContent = "question1";
-c2.textContent = "answer1";
-c3.textContent = "question2";
-c4.textContent = "answer2";
-c5.textContent = "question3";
-c6.textContent = "answer3";
-c7.textContent = "question4";
-c8.textContent = "answer4";
-c9.textContent = "question5";
-c10.textContent ="answer5";
-c11.textContent = "question6";
-c12.textContent = "answer6";
-c13.textContent = "question7";
-c14.textContent = "answer7";
-c15.textContent = "question8";
-c16.textContent = "answer8";
-c17.textContent = "question9";
-c18.textContent = "answer9";
-c19.textContent = "question10";
-c20.textContent ="answer10";
+c1.textContent = "İlk Kurulan Türk Beyliği";
+c2.textContent = "Saltuklular";
+c3.textContent = "İlk Hastanenin Kurulduğu beylik";
+c4.textContent = "Mengücekliler";
+c5.textContent = "Yağbasan Medresesinin Bulunduğu Beylik";
+c6.textContent = "Danişmentliler";
+c7.textContent = "El Cezerinin Bulunduğu Beylik";
+c8.textContent = "Artuklular";
+c9.textContent = "Donaınımı Güçlü olan bir Beylik";
+c10.textContent ="Çaka Beyliği";
+c11.textContent = "Türkiye Selçuklunun En Parlak Dönemi";
+c12.textContent = "1. Alaaddin Keykubat Dönemi";
+c13.textContent = "Anadolunun Kapılarını Açan Savaş";
+c14.textContent = "Malazgrit Savaşı";
+c15.textContent = "Türkiye selçuklunun Yıkılışını Başlatan Savaş";
+c16.textContent = "Kösedağ Savaşı";
+c17.textContent = "Türklerin Anadoludaki Yerini Sağlamlaştıran Savaş";
+c18.textContent = "Miryekefelon Savaşı";
+c19.textContent = "İlk Dini İsyandır";
+c20.textContent = "Babailer İsyanı";
 
 
 addEventListener("click", (event) =>{
@@ -54,7 +55,6 @@ addEventListener("click", (event) =>{
         mainLogic(event.target);
     }
 })
-
 
 function mainLogic(c){
     if(c==prevSelected){return;}
@@ -91,7 +91,7 @@ function mainLogic(c){
                 if(allCs[i].bar == c.bar){
                     allCs[i].style.transform = "perspective(32cm)rotateY(0deg)"
                     setTimeout(showTextArray,502,i)
-                    setTimeout(setGreen,1000,i)
+                    setTimeout(teamTurn?setBlue:setRed,1000,i)
                 }
                 i++;
             }
@@ -107,10 +107,10 @@ function mainLogic(c){
                 c.style.transform = "perspective(32cm)rotateY(-180deg)";
                 setTimeout(hideTextC,502,c)
                 setTimeout(hideTextC,502,prevSelected)
-                isInTransition = false;
                 prevSelected = undefined;
             }, 1000);
-
+            teamTurn = !teamTurn;
+            setTimeout(changeTurnBackground,2000,teamTurn)
             return;
         }
     }
@@ -120,8 +120,8 @@ function mainLogic(c){
         setTimeout(showTextC,502,c)
         prevSelected = c;
     }
+    checkGameEnd();
 }
-
 function showTextArray(i){
     allCs[i].style.color = "black"
 }
@@ -131,6 +131,32 @@ function showTextC(ci){
 function hideTextC(ci){
     ci.style.color = "transparent"
 }
-function setGreen(i){
-    allCs[i].style.background = "linear-gradient(33deg,#1259ff 25%,#052ba9 10%,#052ba9 50%,#1259ff 50%,#1259ff 75%,#052ba9 50%,#052ba9 100%)"
+function setBlue(i){
+    allCs[i].style.background = "linear-gradient(33deg,#0d5394 25%,#1464b1 10%,#1464b1 50%,#0d5394 50%,#0d5394 75%,#1464b1 50%,#1464b1 100%)"
+    blueScore++;
+}
+function setRed(i){
+    allCs[i].style.background = "linear-gradient(33deg,#ff131c 25%,#d91118 10%,#d91118 50%,#ff131c 50%,#ff131c 75%,#d91118 50%,#d91118 100%)"
+    redScore++;
+}
+function changeTurnBackground(turn){
+    if(turn){
+        document.body.style.backgroundColor = "#0e5ee4"
+    }
+    else{
+        document.body.style.backgroundColor = "#f41733"
+        
+    }
+    isInTransition = false;
+}
+function checkGameEnd(){    
+    if (blueScore + redScore >= 20) {
+        if (blueScore > redScore) {
+            window.location.assign('results/blueWin.html');
+          } else if (blueScore === redScore) {
+            window.location.assign('results/drawWin.html');
+          } else {
+            window.location.assign('results/redWin.html');
+          }
+    }
 }

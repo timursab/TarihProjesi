@@ -1,11 +1,11 @@
 var allCs = [c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15,c16,c17,c18,c19,c20];
-//Randomize Flex Order
 var iii = 0;
+
 for(iii;iii < allCs.length;iii++){
     allCs[iii].dataset.customVariable ="bar";
     allCs[iii].bar = Math.floor(iii/2);
-    allCs[iii].style.order = Math.round(Math.random()*10)
-
+    //Randomize card placement
+    //allCs[iii].style.order = Math.round(Math.random()*10);
 }
 
 var blueScore = 0;
@@ -13,8 +13,8 @@ var redScore = 0;
 var selectingSecond = false;
 var prevSelected;
 var isInTransition = false;
-
 var teamTurn = false;
+
 
 q1Solved = false;
 q2Solved = false;
@@ -52,18 +52,11 @@ c20.textContent = "Babailer İsyanı";
 
 addEventListener("click", (event) =>{
     if(event.target.className == "cards"){
-        mainLogic(event.target);
-    }else{
-        checkGameEnd();
+        mainLogic(event.target);    
     }
 })
 
-
-
-
-
 function mainLogic(c){
-    checkGameEnd();
     if(c==prevSelected){return;}
     if((c == allCs[0]||c == allCs[1]) && q1Solved){return;}
     if((c == allCs[2]||c == allCs[3]) && q2Solved){return;}
@@ -115,9 +108,9 @@ function mainLogic(c){
                 setTimeout(hideTextC,502,c)
                 setTimeout(hideTextC,502,prevSelected)
                 prevSelected = undefined;
-            }, 1000);
+            }, 2000);
             teamTurn = !teamTurn;
-            setTimeout(changeTurnBackground,2000,teamTurn)
+            setTimeout(changeTurnBackground,3000,teamTurn)
             return;
         }
     }
@@ -140,10 +133,12 @@ function hideTextC(ci){
 function setBlue(i){
     allCs[i].style.background = "linear-gradient(33deg,#0d5394 25%,#1464b1 10%,#1464b1 50%,#0d5394 50%,#0d5394 75%,#1464b1 50%,#1464b1 100%)"
     blueScore++;
+    checkGameEnd();
 }
 function setRed(i){
     allCs[i].style.background = "linear-gradient(33deg,#ff131c 25%,#d91118 10%,#d91118 50%,#ff131c 50%,#ff131c 75%,#d91118 50%,#d91118 100%)"
     redScore++;
+    checkGameEnd();
 }
 function changeTurnBackground(turn){
     if(turn){
@@ -151,19 +146,20 @@ function changeTurnBackground(turn){
     }
     else{
         document.body.style.backgroundColor = "#f41733"
-        
     }
     isInTransition = false;
 }
-function checkGameEnd(){    
+function checkGameEnd(){   
+    console.log(blueScore,redScore) 
     if (blueScore + redScore >= 20) {
-        if (blueScore > redScore) {
+        if (blueScore>redScore) {
             window.location.assign('results/blueWin.html');
-          } else if (blueScore === redScore) {
-            window.location.assign('results/drawWin.html');
-          } else {
+        } 
+        if(blueScore<redScore) {
             window.location.assign('results/redWin.html');
-          }
+        }
+        if (blueScore == redScore) {
+            window.location.assign('results/drawWin.html');
+        } 
     }
 }
-
