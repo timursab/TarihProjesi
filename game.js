@@ -1,10 +1,13 @@
 console.log(localStorage.getItem("lines"));
+
+
 var allCs = [c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15,c16,c17,c18,c19,c20];
 var iii = 0;
-
+var tarihLines = JSON.parse(localStorage.getItem("lines")); 
 for(iii;iii < allCs.length;iii++){
     allCs[iii].dataset.customVariable ="bar";
     allCs[iii].bar = Math.floor(iii/2);
+    eval(`c${iii+1}`).textContent = tarihLines[iii];
     //Randomize card placement
     //allCs[iii].style.order = Math.round(Math.random()*10);
 }
@@ -28,7 +31,7 @@ q8Solved = false;
 q9Solved = false;
 q10Solved = false;
 
-
+/*
 c1.textContent = "İlk Kurulan Türk Beyliği";
 c2.textContent = "Saltuklular";
 c3.textContent = "İlk Hastanenin Kurulduğu beylik";
@@ -49,7 +52,7 @@ c17.textContent = "Türklerin Anadoludaki Yerini Sağlamlaştıran Savaş";
 c18.textContent = "Miryekefelon Savaşı";
 c19.textContent = "İlk Dini İsyandır";
 c20.textContent = "Babailer İsyanı";
-
+*/
 
 addEventListener("click", (event) =>{
     if(event.target.className == "cards"){
