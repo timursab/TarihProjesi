@@ -9,7 +9,7 @@ for(iii;iii < allCs.length;iii++){
     allCs[iii].bar = Math.floor(iii/2);
     eval(`c${iii+1}`).textContent = tarihLines[iii];
     //Randomize card placement
-    //allCs[iii].style.order = Math.round(Math.random()*10);
+    allCs[iii].style.order = Math.round(Math.random()*10);
 }
 
 var blueScore = 0;
